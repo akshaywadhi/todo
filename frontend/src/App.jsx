@@ -1,14 +1,18 @@
-import Todo from "./Components/Todo"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
+import Todo from "./Components/Todo";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
-
-function App() {
-
-
+export default function App() {
   return (
-    <>
-      <Todo/>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+         <Route path="/todos" element={<ProtectedRoute><Todo /></ProtectedRoute>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
